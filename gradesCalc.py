@@ -19,12 +19,18 @@ def final_grade(input_path: str, output_path: str) -> int:
             else:
                 output_list += current_student
     sorted_output_list = sorted(output_list, key=operator.itemgetter(0))
+    total_grades = 0
+    number_of_students = 0
     for student in sorted_output_list:
-        student_output = [student[0], student[3], calculateFinalGrade(student[0], student[3])]
+        student_final_grade = calculateFinalGrade(student[0], student[3])
+        student_output = [student[0], student[3], student_final_grade]
+        total_grades += student_final_grade
+        number_of_students ++
     for student in sorted_output_list:
         output.write(student)
     input.close()
     output.close()
+    return total_grades // number_of_students
 
 def legalName(name: str) -> bool:
     for letter in name:
@@ -34,7 +40,7 @@ def legalName(name: str) -> bool:
 
 def deepContains(list_of_lists: list, number: int) -> int:
     for index in range(len(list_of_lists)):
-        for value in list[index]:
+        for value in list_of_lists[index]:
             if value == number:
                 return index
     return -1
