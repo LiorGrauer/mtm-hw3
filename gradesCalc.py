@@ -43,7 +43,7 @@ def final_grade(input_path: str, output_path: str) -> int:
         student = student_output
         total_grades += student_final_grade
     for student in sorted_output_list:
-        student_string = str(student[0]) + ", " + str(student[1]) + ", " + str(student[2]) + "/n"
+        student_string = str(student[0]) + ", " + str(student[1]) + ", " + str(student[2]) + "\n"
         output.write(student_string)
     input.close()
     output.close()
