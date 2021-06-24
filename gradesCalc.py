@@ -45,8 +45,8 @@ def deepContains(list_of_lists: list, number: int) -> int:
                 return index
     return -1
 
-def calculateFinalGrade(id: list, grade: int) -> int:
-    return (((id % 100) + grade) // 2)
+def calculateFinalGrade(id: int, grade: int) -> int:
+    return ((id % 100) + grade) // 2
 
 #### PART 2 ####
 # check_strings: Checks if `s1` can be constructed from `s2`'s characters.
