@@ -7,6 +7,10 @@ FIRST_UPPER_CASE_LETTER = 'A'
 LAST_UPPER_CASE_LETTER = 'Z'
 GRADE_DIVIDER = 2
 MUDOLO_NUMBER_FOR_ID_DIGITS = 100
+MIN_ID = 10000000
+MAX_ID = 99999999
+MIN_AVERAGE_GRADE = 50
+MAX_AVERAGE_GRADE = 100
 
 #### PART 1 ####    
 # final_grade: Calculates the final grade for each student, and writes the output (while eliminating illegal
@@ -21,26 +25,29 @@ def final_grade(input_path: str, output_path: str) -> int:
         current_student = line.split(',')
         for i in range(len(current_student)):
             current_student[i] = current_student[i].strip()
-        if (current_student[0][0] != 0 and legalName(current_student[1]) and current_student[2] > 0 and current_student[3] > 50 and current_student[3] <= 100):
+            if i != 1:
+                current_student[i] = int(current_student[i])
+        if (current_student[0] >= MIN_ID and current_student[0] <= MAX_ID and 
+            legalName(current_student[1]) and current_student[2] > 0 and 
+            current_student[3] > MIN_AVERAGE_GRADE and current_student[3] <= MAX_AVERAGE_GRADE):
             location_of_student = deepContains(output_list, current_student[0])
             if (location_of_student >= 0):
                 output_list[location_of_student] = current_student 
             else:
-                output_list += current_student
+                output_list.append(current_student)
     sorted_output_list = sorted(output_list, key=lambda x: x[0])
     total_grades = 0
-    number_of_students = 0
     for student in sorted_output_list:
         student_final_grade = calculateFinalGrade(student[0], student[3])
         student_output = [student[0], student[3], student_final_grade]
         student = student_output
         total_grades += student_final_grade
-        number_of_students += 1
     for student in sorted_output_list:
-        output.write(student)
+        student_string = str(student[0]) + ", " + str(student[1]) + ", " + str(student[2]) + "/n"
+        output.write(student_string)
     input.close()
     output.close()
-    return total_grades // number_of_students
+    return total_grades // len(sorted_output_list)
 
 def legalName(name: str) -> bool:
     for letter in name:
@@ -49,6 +56,8 @@ def legalName(name: str) -> bool:
     return True
 
 def deepContains(list_of_lists: list, number: int) -> int:
+    if len(list_of_lists) <= 1:
+        return -1
     for index in range(len(list_of_lists)):
         for value in list_of_lists[index]:
             if value == number:
