@@ -11,8 +11,7 @@ def final_grade(input_path: str, output_path: str) -> int:
     output_list = []
     for line in input:
         current_student = line.lstrip().split(',')
-        if (current_student[0][0] != 0 and legalName(current_student[1]) and current_student[2] > 0 and 
-            current_student[3] > 50 and current_student[3] <= 100):
+        if (current_student[0][0] != 0 and legalName(current_student[1]) and current_student[2] > 0 and current_student[3] > 50 and current_student[3] <= 100):
             location_of_student = deepContains(output_list, current_student[0])
             if (location_of_student >= 0):
                 output_list[location_of_student] = current_student 
@@ -24,6 +23,7 @@ def final_grade(input_path: str, output_path: str) -> int:
     for student in sorted_output_list:
         student_final_grade = calculateFinalGrade(student[0], student[3])
         student_output = [student[0], student[3], student_final_grade]
+        student = student_output
         total_grades += student_final_grade
         number_of_students += 1
     for student in sorted_output_list:
