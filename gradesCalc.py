@@ -18,7 +18,9 @@ def final_grade(input_path: str, output_path: str) -> int:
     output = open(output_path,"w")
     output_list = []
     for line in input:
-        current_student = line.lstrip().split(',')
+        current_student = line.split(',')
+        for i in range(len(current_student)):
+            current_student[i] = current_student[i].strip()
         if (current_student[0][0] != 0 and legalName(current_student[1]) and current_student[2] > 0 and current_student[3] > 50 and current_student[3] <= 100):
             location_of_student = deepContains(output_list, current_student[0])
             if (location_of_student >= 0):
@@ -42,7 +44,7 @@ def final_grade(input_path: str, output_path: str) -> int:
 
 def legalName(name: str) -> bool:
     for letter in name:
-        if not(letter >= FIRST_LOWER_CASE_LETTER and letter <= LAST_LOWER_CASE_LETTER) and not(letter >= FIRST_UPPER_CASE_LETTER and letter <= LAST_UPPER_CASE_LETTER):
+        if not(letter >= FIRST_LOWER_CASE_LETTER and letter <= LAST_LOWER_CASE_LETTER) and not(letter >= FIRST_UPPER_CASE_LETTER and letter <= LAST_UPPER_CASE_LETTER) and not(letter == ' '):
             return False
     return True
 
