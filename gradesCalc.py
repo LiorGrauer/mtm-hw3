@@ -25,7 +25,7 @@ def final_grade(input_path: str, output_path: str) -> int:
         student_final_grade = calculateFinalGrade(student[0], student[3])
         student_output = [student[0], student[3], student_final_grade]
         total_grades += student_final_grade
-        number_of_students ++
+        number_of_students += 1
     for student in sorted_output_list:
         output.write(student)
     input.close()
@@ -45,11 +45,8 @@ def deepContains(list_of_lists: list, number: int) -> int:
                 return index
     return -1
 
-# def returnFirstElement(list: list) -> int
-#     return list[0]
-
 def calculateFinalGrade(id: list, grade: int) -> int:
-    return ((id % 100) + grade) // 2
+    return (((id % 100) + grade) // 2)
 
 #### PART 2 ####
 # check_strings: Checks if `s1` can be constructed from `s2`'s characters.
