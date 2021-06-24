@@ -37,10 +37,10 @@ def final_grade(input_path: str, output_path: str) -> int:
                 output_list.append(current_student)
     sorted_output_list = sorted(output_list, key=lambda x: x[0])
     total_grades = 0
-    for student in sorted_output_list:
-        student_final_grade = calculateFinalGrade(student[0], student[3])
-        student_output = [student[0], student[3], student_final_grade]
-        student = student_output
+    for i in range(len(sorted_output_list)):
+        student_final_grade = calculateFinalGrade(sorted_output_list[i][0], sorted_output_list[i][3])
+        student_output = [sorted_output_list[i][0], sorted_output_list[i][3], student_final_grade]
+        sorted_output_list[i] = student_output
         total_grades += student_final_grade
     for student in sorted_output_list:
         student_string = str(student[0]) + ", " + str(student[1]) + ", " + str(student[2]) + "\n"
