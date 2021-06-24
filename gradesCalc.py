@@ -1,4 +1,6 @@
-#### PART 1 ####
+import operator
+
+#### PART 1 ####    
 # final_grade: Calculates the final grade for each student, and writes the output (while eliminating illegal
 # rows from the input file) into the file in `output_path`. Returns the average of the grades.
 #   input_path: Path to the file that contains the input
@@ -11,7 +13,7 @@ def final_grade(input_path: str, output_path: str) -> int:
         current_student = line.lstrip().split(',')
         if (current_student[0][0] != 0 and legalName(current_student[1]) and current_student[2] > 0 and 
             current_student[3] > 50 and current_student[3] <= 100):
-            int location_of_student = deepContains(output_list, current_student[0])
+            location_of_student = deepContains(output_list, current_student[0])
             if (location_of_student >= 0):
                 output_list[location_of_student] = current_student 
             else:
@@ -26,9 +28,9 @@ def final_grade(input_path: str, output_path: str) -> int:
 
 def legalName(name: str) -> bool:
     for letter in name:
-        if !(letter >= 'a' and leter <= 'z') and !(letter >= 'A' and leter <= 'Z'):
-            return false
-    return true
+        if not(letter >= 'a' and letter <= 'z') and not(letter >= 'A' and letter <= 'Z'):
+            return False
+    return True
 
 def deepContains(list_of_lists: list, number: int) -> int:
     for index in range(len(list_of_lists)):
