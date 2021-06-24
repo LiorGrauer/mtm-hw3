@@ -56,12 +56,11 @@ def deepContains(list_of_lists: list, number: int) -> int:
     return -1
 
 def calculateFinalGrade(id: int, grade: int) -> int:
-    return ((id % MUDOLO_NUMBER_FOR_ID_DIGITS) + grade) // GRADE_DIVIDER
+    return (((id % MUDOLO_NUMBER_FOR_ID_DIGITS) + grade)//GRADE_DIVIDER)
 
 #### PART 2 ####
-# check_strings: Checks if `s1` can be constructed from `s2`'s characters.
-#   s1: The string that we want to check if it can be constructed
-#   s2: The string that we want to construct s1 from
+# wordToHistCaseInsensitive: returns hist that contains in each cells the number of times a letter showed in the string.
+#   number of times 'a' appers will be in [0] and so on
 def wordToHistCaseInsensitive(str: str) -> list:
     hist = [0]*ABC_SIZE
     for letter in str:
@@ -71,6 +70,9 @@ def wordToHistCaseInsensitive(str: str) -> list:
             hist[ord(letter) - ord(FIRST_LOWER_CASE_LETTER)]+=1
     return hist
 
+# check_strings: Checks if `s1` can be constructed from `s2`'s characters.
+#   s1: The string that we want to check if it can be constructed
+#   s2: The string that we want to construct s1 from
 def check_strings(s1: str, s2: str) -> bool:
     hist_s1 = wordToHistCaseInsensitive(s1) 
     hist_s2 = wordToHistCaseInsensitive(s2)  
@@ -78,4 +80,4 @@ def check_strings(s1: str, s2: str) -> bool:
         if(letter_count_1 > letter_count_2):
             return False
     return True
-    raise NotImplementedError
+
