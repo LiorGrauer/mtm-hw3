@@ -1,6 +1,5 @@
 from gradesCalc import *
 
-
 # Testing your implemented functions, feel free to add more tests below
 def main():
 
