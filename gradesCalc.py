@@ -49,7 +49,8 @@ def final_grade(input_path: str, output_path: str) -> int:
         output.write(student_string)
     input.close()
     output.close()
-    return total_grades // len(sorted_output_list)
+    if(len(sorted_output_list) != 0):
+        return total_grades // len(sorted_output_list)
 
 def legalName(name: str) -> bool:
     for letter in name:
