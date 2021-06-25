@@ -25,16 +25,18 @@ def final_grade(input_path: str, output_path: str) -> int:
         current_student = line.split(',')
         for i in range(len(current_student)):
             current_student[i] = current_student[i].strip()
-            if i != 1:
-                current_student[i] = int(current_student[i])
-        if (current_student[0] >= MIN_ID and current_student[0] <= MAX_ID and 
-            legalName(current_student[1]) and current_student[2] > 0 and 
-            current_student[3] > MIN_AVERAGE_GRADE and current_student[3] <= MAX_AVERAGE_GRADE):
-            location_of_student = deepContains(output_list, current_student[0])
-            if (location_of_student >= 0):
-                output_list[location_of_student] = current_student 
-            else:
-                output_list.append(current_student)
+        if current_student[0][0] != '0':
+            for i in range(len(current_student)):
+                if i != 1:
+                    current_student[i] = int(current_student[i])
+            if (current_student[0] >= MIN_ID and current_student[0] <= MAX_ID and 
+                legalName(current_student[1]) and current_student[2] > 0 and 
+                current_student[3] > MIN_AVERAGE_GRADE and current_student[3] <= MAX_AVERAGE_GRADE):
+                location_of_student = deepContains(output_list, current_student[0])
+                if (location_of_student >= 0):
+                    output_list[location_of_student] = current_student 
+                else:
+                    output_list.append(current_student)
     sorted_output_list = sorted(output_list, key=lambda x: x[0])
     total_grades = 0
     for i in range(len(sorted_output_list)):
