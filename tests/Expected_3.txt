@@ -1,0 +1,23 @@
+(3.1) Testing The - check_string Function Return Value - All Lower Case...
+PASSED
+PASSED
+PASSED
+PASSED
+PASSED
+PASSED
+PASSED
+PASSED
+(3.1) Excellent! - Passed The - check_string Function Return Value - All Lower Case.
+
+(3.2) Testing The - check_string Function Return Value - Case Sensitive...
+PASSED
+PASSED
+PASSED
+PASSED
+(3.2) Excellent! - Passed The - check_string Function Return Value - Case Sensitive.
+
+(3.3) Testing The - check_string Function Return Value - Empty String...
+PASSED
+PASSED
+PASSED
+(3.3) Excellent! - Passed The - check_string Function Return Value - Empty String.
