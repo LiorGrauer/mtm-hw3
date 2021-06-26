@@ -56,7 +56,8 @@ def final_grade(input_path: str, output_path: str) -> int:
 
 def legalName(name: str) -> bool:
     for letter in name:
-        if not(letter >= FIRST_LOWER_CASE_LETTER and letter <= LAST_LOWER_CASE_LETTER) and not(letter >= FIRST_UPPER_CASE_LETTER and letter <= LAST_UPPER_CASE_LETTER) and not(letter == ' '):
+        if (not(letter >= FIRST_LOWER_CASE_LETTER and letter <= LAST_LOWER_CASE_LETTER) 
+            and not(letter >= FIRST_UPPER_CASE_LETTER and letter <= LAST_UPPER_CASE_LETTER) and not(letter == ' ')):
             return False
     return True
 
