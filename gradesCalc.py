@@ -81,7 +81,7 @@ def wordToHistCaseInsensitive(str: str) -> list:
     for letter in str:
         if letter <=LAST_UPPER_CASE_LETTER and letter >= FIRST_UPPER_CASE_LETTER:
             hist[ord(letter) - ord(FIRST_UPPER_CASE_LETTER)]+=1
-        else:
+        elif letter <=LAST_LOWER_CASE_LETTER and letter >= FIRST_LOWER_CASE_LETTER:
             hist[ord(letter) - ord(FIRST_LOWER_CASE_LETTER)]+=1
     return hist
 
