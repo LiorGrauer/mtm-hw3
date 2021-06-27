@@ -49,8 +49,7 @@ def main():
     assert is_constructed_from is True  
     is_constructed_from = check_strings("sttt","st")
     assert is_constructed_from is False 
-    is_constructed_from = check_strings("Knockout","Knock out")
-    assert is_constructed_from is True  
+
         
 if __name__ == "__main__":
     main()
