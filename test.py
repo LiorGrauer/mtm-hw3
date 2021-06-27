@@ -33,5 +33,9 @@ def main():
     course_avg = final_grade(input_path=input_path, output_path=output_path)
     assert course_avg == 70
 
+    course_avg = final_grade('tests/input1.txt', 'tests/out1.txt')
+    course_avg = final_grade('tests/input2.txt', 'tests/out2.txt')
+    course_avg = final_grade('tests/input3.txt', 'tests/out3.txt')
+
 if __name__ == "__main__":
     main()
