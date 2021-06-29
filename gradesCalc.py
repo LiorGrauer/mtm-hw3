@@ -18,8 +18,27 @@ MAX_AVERAGE_GRADE = 100
 #   input_path: Path to the file that contains the input
 #   output_path: Path to the file that will contain the output
 def final_grade(input_path: str, output_path: str) -> int:
-    input = open(input_path,"r")
+    output_list = readStudentsFromFile(input_path)
+    sorted_output_list = sorted(output_list, key=lambda x: x[0])
+    total_grades = 0
+    for i in range(len(sorted_output_list)):
+        student_final_grade = calculateFinalGrade(sorted_output_list[i][0], sorted_output_list[i][3])
+        sorted_output_list[i] = [sorted_output_list[i][0], sorted_output_list[i][3], student_final_grade]
+        total_grades += student_final_grade
     output = open(output_path,"w")
+    for student in sorted_output_list:
+        student_string = str(student[0]) + ", " + str(student[1]) + ", " + str(student[2]) + "\n"
+        output.write(student_string)
+    output.close()
+    if(len(sorted_output_list) != 0):
+        return total_grades // len(sorted_output_list)
+    else:
+        return 0
+
+# readStudentsFromFile: receives input path to the data file and returns a list of lists and every list in the list
+#                       of lists contains a legal student details
+def readStudentsFromFile(input_path: str) -> list:
+    input = open(input_path,"r")
     output_list = []
     for line in input:
         current_student = line.split(',')
@@ -32,28 +51,15 @@ def final_grade(input_path: str, output_path: str) -> int:
             if (current_student[0] >= MIN_ID and current_student[0] <= MAX_ID and 
                 legalName(current_student[1]) and current_student[2] > 0 and 
                 current_student[3] > MIN_AVERAGE_GRADE and current_student[3] <= MAX_AVERAGE_GRADE):
-                location_of_student = deepContains(output_list, current_student[0])
+                location_of_student = studentExists(output_list, current_student[0])
                 if (location_of_student >= 0):
                     output_list[location_of_student] = current_student 
                 else:
                     output_list.append(current_student)
-    sorted_output_list = sorted(output_list, key=lambda x: x[0])
-    total_grades = 0
-    for i in range(len(sorted_output_list)):
-        student_final_grade = calculateFinalGrade(sorted_output_list[i][0], sorted_output_list[i][3])
-        student_output = [sorted_output_list[i][0], sorted_output_list[i][3], student_final_grade]
-        sorted_output_list[i] = student_output
-        total_grades += student_final_grade
-    for student in sorted_output_list:
-        student_string = str(student[0]) + ", " + str(student[1]) + ", " + str(student[2]) + "\n"
-        output.write(student_string)
     input.close()
-    output.close()
-    if(len(sorted_output_list) != 0):
-        return total_grades // len(sorted_output_list)
-    else:
-        return 0
+    return output_list
 
+# legalName: receives a name and returns True if it is a legal name and False if not
 def legalName(name: str) -> bool:
     for letter in name:
         if (not(letter >= FIRST_LOWER_CASE_LETTER and letter <= LAST_LOWER_CASE_LETTER) 
@@ -61,15 +67,18 @@ def legalName(name: str) -> bool:
             return False
     return True
 
-def deepContains(list_of_lists: list, number: int) -> int:
+# studentExists: receives list of lists (each list in the list of lists represents a student) and id number
+#                and checks if the list of lists contains a student with the recevied id number
+#                if True returns the index of that student, if False return -1
+def studentExists(list_of_lists: list, id: int) -> int:
     if len(list_of_lists) <= 1:
         return -1
     for index in range(len(list_of_lists)):
-        for value in list_of_lists[index]:
-            if value == number:
-                return index
+        if list_of_lists[index][0] == id:
+            return index
     return -1
 
+# calculateFinalGrade: receives student id and grade and calculate his AVG base on the given formula.
 def calculateFinalGrade(id: int, grade: int) -> int:
     return (((id % MUDOLO_NUMBER_FOR_ID_DIGITS) + grade)//GRADE_DIVIDER)
 
