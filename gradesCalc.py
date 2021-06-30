@@ -11,6 +11,7 @@ MIN_ID = 10000000
 MAX_ID = 99999999
 MIN_AVERAGE_GRADE = 50
 MAX_AVERAGE_GRADE = 100
+STUDENT_DOES_NOT_EXISTS = -1
 
 #### PART 1 ####    
 # final_grade: Calculates the final grade for each student, and writes the output (while eliminating illegal
@@ -72,13 +73,13 @@ def legalName(name: str) -> bool:
 #                if True returns the index of that student, if False return -1
 def studentExists(list_of_lists: list, id: int) -> int:
     if len(list_of_lists) < 1:
-            return -1
+            return STUDENT_DOES_NOT_EXISTS
     elif list_of_lists[0] == id:
             return 0
     for index in range(len(list_of_lists)):
         if list_of_lists[index][0] == id:
             return index
-    return -1
+    return STUDENT_DOES_NOT_EXISTS
 
 # calculateFinalGrade: receives student id and grade and calculate his AVG base on the given formula.
 def calculateFinalGrade(id: int, grade: int) -> int:
