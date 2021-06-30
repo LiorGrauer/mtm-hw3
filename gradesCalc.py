@@ -73,7 +73,7 @@ def legalName(name: str) -> bool:
 #                if True returns the index of that student, if False return -1
 def studentExists(list_of_lists: list, id: int) -> int:
     if len(list_of_lists) < 1:
-            return STUDENT_DOES_NOT_EXISTS
+        return STUDENT_DOES_NOT_EXISTS
     for index in range(len(list_of_lists)):
         if list_of_lists[index][0] == id:
             return index
