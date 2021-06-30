@@ -74,8 +74,6 @@ def legalName(name: str) -> bool:
 def studentExists(list_of_lists: list, id: int) -> int:
     if len(list_of_lists) < 1:
             return STUDENT_DOES_NOT_EXISTS
-    elif len(list_of_lists) == 1 and list_of_lists[0] == id:
-            return 0
     for index in range(len(list_of_lists)):
         if list_of_lists[index][0] == id:
             return index
