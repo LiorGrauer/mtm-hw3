@@ -65,7 +65,7 @@ def legalName(name: str) -> bool:
     for letter in name:
         if (not(letter >= FIRST_LOWER_CASE_LETTER and letter <= LAST_LOWER_CASE_LETTER) 
             and not(letter >= FIRST_UPPER_CASE_LETTER and letter <= LAST_UPPER_CASE_LETTER) 
-            and not(letter == ' ' or letter == "\t")):
+            and not(letter == ' ' or letter == '\t')):
             return False
     return True
 
